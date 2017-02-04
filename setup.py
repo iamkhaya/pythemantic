@@ -10,7 +10,7 @@ config = {
     'author_email': 'khayelihle.tshuma@gmail.com',
     'version': '0.0.1',
     'install_requires': ['nose'],
-    'packages': ['NAME'],
+    'packages': ['gitpython'],
     'scripts': [],
     'name': 'pythemantic'
 }
