@@ -1,8 +1,11 @@
+"""
+Module to manage user interactions on terminal
+"""
 release_types = {
-    'patch' : 'Patch: Bug fixes, recommended for all (default)',
-    'minor' : 'Minor: New features, but backwards compatible',
-    'major' : 'Major: Breaking changes'
-    }
+    'patch': 'Patch: Bug fixes, recommended for all (default)',
+    'minor': 'Minor: New features, but backwards compatible',
+    'major': 'Major: Breaking changes'
+}
 
 
 def display_menu():
@@ -20,6 +23,7 @@ def display_menu():
 
     release_type = raw_input(prompt)
     return release_type
+
 
 def add_changes():
     """

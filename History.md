@@ -1,5 +1,6 @@
 ### History
 ###### 0.0.2
 
-* My first change
-* Another change
+* Added db connection exception
+* Added GUI
+* Another random change
