@@ -26,7 +26,7 @@ def check_branch(repository):
 
     """
     branch = repository.active_branch.name
-    return bool(branch == 'master')
+    return not bool(branch == 'master')
 
 
 def update_tags(repo, current_version, new_version, tag_message):

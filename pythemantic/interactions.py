@@ -26,14 +26,10 @@ def display_menu():
         release_type: The type of release
     """
     prompt = '> '
-    print(bcolors.OKGREEN + "Khayelihle" + bcolors.ENDC)
-    print(bcolors.OKGREEN + bcolors.ENDC)
-    print(bcolors.OKGREEN + bcolors.ENDC)
-
     print bcolors.OKBLUE + "Enter the type of change"+ bcolors.ENDC
-    print "1. %s" % release_types['patch']
-    print "2. %s" % release_types['minor']
-    print "3. %s" % release_types['major']
+    print bcolors.OKGREEN + "1. %s" % release_types['patch']+ bcolors.ENDC
+    print bcolors.OKGREEN + "2. %s" % release_types['minor']+ bcolors.ENDC
+    print bcolors.OKGREEN + "3. %s" % release_types['major']+ bcolors.ENDC
 
     release_type = raw_input(prompt)
     return release_type

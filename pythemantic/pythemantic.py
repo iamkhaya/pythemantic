@@ -26,9 +26,7 @@ def main():
                 print("Sorry, I didn't understand that.")
                 continue
         else:
-            print bcolors.FAIL + "***** You are not on master ***** \n \
-            It is not recommended to create releases from a branch unless they're maintenance releases\
-            Exiting ..." + bcolors.ENDC
+            print bcolors.FAIL + "***** You are not on master ***** \nIt is not recommended to create releases from a branch unless they're maintenance releases\nExiting ..." + bcolors.ENDC
             exit()
 
     current_version = bump.get_current_version()
