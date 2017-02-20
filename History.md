@@ -2,11 +2,7 @@
 ###### 0.0.2
 
 * Boyan Demo
-* Demo 2
-### History
-###### 0.0.2
-
-* Demo for Boyan
+* More Changes
 ### History
 ###### 0.0.2
 
