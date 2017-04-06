@@ -1,0 +1,18 @@
+# Temporary Files
+.*.swp
+*.pyc
+*.pyo
+
+# Build-related files
+docs/_build/
+.coverage
+.ipynb_checkpoints
+.tox
+*.egg-info
+*.egg
+*.ipynb
+build/
+dist/
+htmlcov/
+venv/
+MANIFEST

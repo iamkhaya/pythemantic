@@ -14,12 +14,12 @@ def get_current_version():
     Returns:
         current_version: The current version of the repo
     """
-    setup_file_path = os.path.join(os.getcwd(), 'setup.py')
+    setup_file_path = os.path.join(os.getcwd(), '__init__.py')
     setup_file = open(setup_file_path, 'r')
 
     setup_text = setup_file.readlines()
     for line in setup_text:
-        if "'version':"in line:
+        if "__version__"in line:
             version_line = line
             current_version = re.findall(r"([0-9.]*[0-9]+)", version_line)
             break
