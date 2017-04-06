@@ -8,6 +8,16 @@ release_types = {
 }
 
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 def display_menu():
     """
     Display release options to the user
@@ -16,10 +26,10 @@ def display_menu():
         release_type: The type of release
     """
     prompt = '> '
-    print "Enter the type of change"
-    print "1. %s" % release_types['patch']
-    print "2. %s" % release_types['minor']
-    print "3. %s" % release_types['major']
+    print bcolors.OKBLUE + "Enter the type of change"+ bcolors.ENDC
+    print bcolors.OKGREEN + "1. %s" % release_types['patch']+ bcolors.ENDC
+    print bcolors.OKGREEN + "2. %s" % release_types['minor']+ bcolors.ENDC
+    print bcolors.OKGREEN + "3. %s" % release_types['major']+ bcolors.ENDC
 
     release_type = raw_input(prompt)
     return release_type
