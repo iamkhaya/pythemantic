@@ -2,7 +2,7 @@
 GitPython utility methods
 """
 import os
-import git
+from git import Repo
 
 
 def init_repository():
@@ -13,11 +13,11 @@ def init_repository():
         new_version: The bumped version
 
     """
-    repo = git.Repo(os.getcwd())
+    repo = Repo.init(os.getcwd())
     return repo
 
 
-def check_branch(repository):
+def on_master_branch(repository):
     """
     Check the cuurent branch
 
@@ -26,7 +26,8 @@ def check_branch(repository):
 
     """
     branch = repository.active_branch.name
-    return not bool(branch == 'master')
+    print("*********" + branch)
+    return bool(branch == 'master')
 
 
 def update_tags(repo, current_version, new_version, tag_message):

@@ -26,12 +26,12 @@ def display_menu():
         release_type: The type of release
     """
     prompt = '> '
-    print bcolors.OKBLUE + "Enter the type of change"+ bcolors.ENDC
-    print bcolors.OKGREEN + "1. %s" % release_types['patch']+ bcolors.ENDC
-    print bcolors.OKGREEN + "2. %s" % release_types['minor']+ bcolors.ENDC
-    print bcolors.OKGREEN + "3. %s" % release_types['major']+ bcolors.ENDC
+    print(bcolors.OKBLUE + "Enter the type of change"+ bcolors.ENDC)
+    print(bcolors.OKGREEN + "1. %s" % release_types['patch']+ bcolors.ENDC)
+    print(bcolors.OKGREEN + "2. %s" % release_types['minor']+ bcolors.ENDC)
+    print(bcolors.OKGREEN + "3. %s" % release_types['major']+ bcolors.ENDC)
 
-    release_type = raw_input(prompt)
+    release_type = input(prompt)
     return release_type
 
 
@@ -42,11 +42,11 @@ def add_changes():
     Returns:
         change_summary: A summary of the change
     """
-    print "Enter the changes"
+    print("Enter the changes")
     changes = ''
     user_input = " *"
     while user_input:
-        user_input = raw_input(" * ")
+        user_input = input(" * ")
         changes += '\n' + '* ' + user_input
     return changes[:changes.rfind('\n')]
 
@@ -58,5 +58,5 @@ def get_tag_message():
     Returns:
         tag_message: A summary of the change
     """
-    tag_message = raw_input(" Enter tag message : ")
+    tag_message = input(" Enter tag message : ")
     return tag_message

@@ -24,9 +24,8 @@ def get_current_version():
             version_line = line
             current_version = re.findall(r"([0-9.]*[0-9]+)", version_line)
             break
-    # current_version = semantic_version.Version(current_version[0])
-    # return current_version
-    return '0.0.1'
+    current_version = semantic_version.Version(current_version[0])
+    return current_version
 
 def bump_version(release_type, current_version):
     """
