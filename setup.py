@@ -1,17 +1,32 @@
-import os
-import re
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+"""setup file"""
 
-def get_version():
-    VERSIONFILE = os.path.join('pythemantic', '__init__.py')
-    initfile_lines = open(VERSIONFILE, 'rt').readlines()
-    for line in initfile_lines:
-        current_version = re.findall(r"([0-9.]*[0-9]+)", line)
-        return current_version[0]
-    raise RuntimeError('Unable to find version string in %s.' % (VERSIONFILE,))
+
+from setuptools import find_packages, setup
+
+with open("requirements.txt", encoding="utf-8") as f:
+    REQUIREMENTS = [dependency.strip() for dependency in f if dependency.strip()]
+
+with open("version", encoding="utf-8") as f:
+    VERSION = f.read().strip()
+
+setup(
+    name="pythemantic",
+    version=VERSION,
+    description="pythemantic",
+    long_description="pythemantic library",
+    classifiers=[
+        "Programming Language :: Python",
+        "Framework :: Pyramid",
+    ],
+    author="Khayelihle Tshuma",
+    author_email="khayelihle.tshuma@gmail.com",
+    url="https://pythemantic.com",
+    keywords="",
+    packages=find_packages(),
+    include_package_data=True,
+    zip_safe=False,
+    install_requires=REQUIREMENTS,
+)
 
 config = {
     'description': 'Pythemantic',

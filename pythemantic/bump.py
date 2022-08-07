@@ -2,7 +2,6 @@
 Bump Module
 """
 import os
-import re
 
 import semantic_version
 import bcolors
@@ -15,17 +14,10 @@ def get_current_version():
     Returns:
         current_version: The current version of the repo
     """
-    setup_file_path = os.path.join(os.getcwd(), '__init__.py')
-    setup_file = open(setup_file_path, 'r')
-
-    setup_text = setup_file.readlines()
-    for line in setup_text:
-        if "__version__"in line:
-            version_line = line
-            current_version = re.findall(r"([0-9.]*[0-9]+)", version_line)
-            break
-    current_version = semantic_version.Version(current_version[0])
-    return current_version
+    with open("version", encoding="utf-8") as f:
+        version = f.read().strip()
+        current_version = semantic_version.Version(version)
+        return current_version
 
 def bump_version(release_type, current_version):
     """
@@ -62,4 +54,4 @@ def update_history(new_version, change_summary):
 
     history_file = open(history_file_path, 'w+')
     change_message = '###### %s' % new_version + '\n' + change_summary
-    history_file.write('### History\n' + "%s\n" % change_message + current_content)
+    history_file.write('###' + "%s\n" % change_message + current_content)
