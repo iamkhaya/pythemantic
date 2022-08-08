@@ -1,4 +1,5 @@
-from pythemantic.pythemantic import main
+from pythemantic.pythemantic import Pythemantic
 
 if __name__ == "__main__":
-    main()
+    pythemantic = Pythemantic()
+    pythemantic.bump_version()

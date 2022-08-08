@@ -33,7 +33,7 @@ isort:
 lint:
 	flake8 $(checkfiles)
 	pylint $(checkfiles)
-	mypy $(checkfiles)
+	# mypy $(checkfiles)
 	python setup.py check -mr
 
 style:

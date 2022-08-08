@@ -3,9 +3,11 @@ Bump Module
 """
 import os
 
-from pythemantic import bcolors
 import semantic_version
 from semantic_version import Version
+
+from pythemantic import bcolors
+
 
 def get_current_version():
     """
@@ -30,9 +32,9 @@ def bump_version(release_type: str, current_version: Version):
     """
     if release_type == "1":
         new_version = current_version.next_patch()
-        print( new_version.major)
-        print( new_version.minor)
-        print( new_version.patch)
+        # print( new_version.major)
+        # print( new_version.minor)
+        # print( new_version.patch)
     elif release_type == "2":
         new_version = current_version.next_minor()
     elif release_type == "3":
@@ -41,18 +43,10 @@ def bump_version(release_type: str, current_version: Version):
         print(bcolors.FAIL + "** Invalid selection **" + bcolors.ENDC)
         return None
 
-    vesion_file_path = os.path.join(os.getcwd(), "version")
-
-    version_file = open(vesion_file_path, "w+")
-    print("****")
-    print(str(new_version.major) + str(new_version.minor) + str(new_version.patch)
-)
-    version_file.write(str(new_version.major) + str(new_version.minor) + str(new_version.patch))
-
     return new_version
 
 
-def update_history(new_version, change_summary):
+def update_history(new_version: str, change_summary: str, change_details: str):
     """
     Update change_log.md or history.md file contents
 
@@ -62,9 +56,22 @@ def update_history(new_version, change_summary):
 
     """
     history_file_path = os.path.join(os.getcwd(), "History.md")
-    history_file = open(history_file_path, "r")
-    current_content = history_file.read()
 
-    history_file = open(history_file_path, "w+")
-    change_message = "###### %s" % new_version + "\n" + change_summary
-    history_file.write("###" + "%s\n" % change_message + current_content)
+    with open(history_file_path, encoding="utf-8", mode="r+") as history_file:
+        current_content = history_file.read()
+
+        change_message = (
+            "## %s" % new_version + " - " + change_summary + "\n" + change_details
+        )
+        history_file.write(f"{change_message}\n{current_content}")
+
+
+def update_version_file(new_version: Version):
+    # update version file
+    version_file_path = os.path.join(os.getcwd(), "version")
+    with open(version_file_path, encoding="utf-8", mode="r+") as version_file:
+        # print("****")
+        # print(str(new_version.major) + '.' + str(new_version.minor) + '.' + str(new_version.patch))
+        version_file.write(
+            f"{str(new_version.major)}.{str(new_version.minor)}.{str(new_version.patch)}"
+        )
