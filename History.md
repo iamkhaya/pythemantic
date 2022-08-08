@@ -1,3 +1,15 @@
+######### 1.0.0
+
+* this is mayjor
+######### 0.0.2
+
+* this is del
+######### 0.0.2
+
+* west coats
+######### 0.0.2
+
+* This is the awesome change
 ### History
 ###### 0.0.2
 
