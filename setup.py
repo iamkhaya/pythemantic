@@ -1,6 +1,3 @@
-"""setup file"""
-
-
 from setuptools import find_packages, setup
 
 with open("requirements.txt", encoding="utf-8") as f:
@@ -16,28 +13,13 @@ setup(
     long_description="pythemantic library",
     classifiers=[
         "Programming Language :: Python",
-        "Framework :: Pyramid",
     ],
     author="Khayelihle Tshuma",
     author_email="khayelihle.tshuma@gmail.com",
-    url="https://pythemantic.com",
-    keywords="",
+    url="https://github.com/iamkhaya/pythemantic",
+    keywords="python semantic versioning lib",
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
     install_requires=REQUIREMENTS,
 )
-
-config = {
-    'description': 'Pythemantic',
-    'author': 'Khayelihle Tshuma',
-    'url': 'https://github.com/iamkhaya/pythemantic',
-    'download_url': 'https://github.com/iamkhaya/pythemantic',
-    'author_email': 'khayelihle.tshuma@gmail.com',
-    'version': get_version(),
-    'install_requires': ['nose', 'gitpython', 'semantic_version'],
-    'packages': [],
-    'scripts': [],
-    'name': 'pythemantic'
-}
-setup(**config)

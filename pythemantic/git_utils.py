@@ -2,7 +2,9 @@
 GitPython utility methods
 """
 import os
-from git import Repo
+
+from git import Repo, exc
+
 
 
 def init_repository():
@@ -19,22 +21,26 @@ def init_repository():
 
 def on_master_branch(repository):
     """
-    Check the cuurent branch
+    Check the current branch
 
     Returns:
         True if branch is Master, False otherwise
 
     """
     branch = repository.active_branch.name
-    print("*********" + branch)
-    return bool(branch == 'master')
+    return bool(branch == "master" or  branch == "main")
 
 
 def update_tags(repo, current_version, new_version, tag_message):
     """
     Tags and commits changes
     """
-    repo.create_tag(new_version, repo.active_branch.name, message=tag_message)
+    try:
+        repo.create_tag(new_version, repo.active_branch.name, message=tag_message)
+        repo.remote('origin').push()
+    except exc.GitCommandError:
+        print("Ooops.. An error occured creating the tag")
+        raise ValueError("Ooops.. An error occured creating the tag")
+    
     repo.git.add("History.md")
-    repo.index.commit("Version bump from %s to %s" %
-                      (current_version, new_version))
+    repo.index.commit("Version bump from %s to %s" % (current_version, new_version))
