@@ -1,3 +1,8 @@
+######### 0.0.6
+
+* d;lkk;k;k
+* kjhkhkjh
+* khkjhk
 ######### 0.0.5
 
 * cdsds
