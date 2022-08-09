@@ -11,6 +11,7 @@ help:
 	@echo  "    lint	Reports all linter violations"
 	@echo  "    test	Runs all tests"
 	@echo  "    ci		Runs linter and tests"
+	@echo  "    pypi		Runs linter and tests"
 
 up:
 	pip install pip
@@ -34,7 +35,13 @@ lint:
 	flake8 $(checkfiles)
 	pylint $(checkfiles)
 	# mypy $(checkfiles)
-	python setup.py check -mr
+	# python setup.py check -mr
+
+pypi:
+	python3 -m pip install --upgrade build
+	python3 -m build
+	python3 -m pip install --upgrade twine
+	python3 -m twine upload --repository pypi dist/*
 
 style:
 	isort $(checkfiles)

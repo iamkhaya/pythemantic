@@ -20,16 +20,16 @@ class Pythemantic:
         repo = self.git_utils.init_repository()
 
         while True:
-            if not self.git_utils.on_master_branch(repo):
+            if self.git_utils.on_master_branch(repo):
                 try:
                     release_type = self.user_interactions.show_initial_menu()
                     break
                 except ValueError:
-                    print("Sorry, I didn't understand that.")
+                    print("Sorry, That is an invalid option.")
                     continue
             else:
                 print(
-                    f"{bcolors.FAIL}***** You are not on master ***** \nIt is not recommended to create releases from a branch unless they're maintenance releases\nExiting ...{bcolors.ENDC}"
+                    f"{bcolors.FAIL}***** You are not on master or main ***** \nIt is not recommended to create releases from a branch unless they're maintenance releases\nExiting ...{bcolors.ENDC}"
                 )
                 sys.exit()
 

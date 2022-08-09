@@ -1,15 +1,23 @@
-[tool.poetry]
+[project]
 name = "pythemantic"
-version = "0.1.0"
-description = ""
-authors = ["Khayelihle Tshuma <khayelihle.tshuma@gmail.com>"]
+version = "0.0.2"
+authors = [
+  { name="Khayelihle Tshuma", email="khayelihle.tshuma@gmail.com" }
+]
+description = "A version manage,ment library for Python projects"
+readme = "README.md"
+license = { file="LICENSE.md" }
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-
-[tool.poetry.dev-dependencies]
-pytest = "^5.2"
+[project.urls]
+"Homepage" = "https://github.com/iamkhaya/pythemantic"
+"Bug Tracker" = "https://github.com/iamkhaya/pythemantic/issues"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

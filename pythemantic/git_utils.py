@@ -40,7 +40,6 @@ class GitUtils:
             repo.create_tag(new_version, repo.active_branch.name, message=tag_message)
             repo.remotes.origin.push(new_version)
         except exc.GitCommandError as excpt:
-            print("Ooops.. An error occured creating the tag")
             raise ValueError("Ooops.. An error occured creating the tag") from excpt
 
         repo.git.add("History.md")
