@@ -1,0 +1,1 @@
+{"buildTargets":["ci","deps","help","isort","lint","make","style","test","up"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}

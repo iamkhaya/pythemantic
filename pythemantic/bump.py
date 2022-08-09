@@ -1,11 +1,10 @@
-"""
-Bump Module
-"""
+import logging
 import os
-import re
 
 import semantic_version
-import bcolors
+from semantic_version import Version
+
+from pythemantic import bcolors
 
 
 def get_current_version():
@@ -15,19 +14,13 @@ def get_current_version():
     Returns:
         current_version: The current version of the repo
     """
-    setup_file_path = os.path.join(os.getcwd(), '__init__.py')
-    setup_file = open(setup_file_path, 'r')
+    with open("version", encoding="utf-8") as f:
+        version = f.read().strip()
+        current_version = semantic_version.Version(version)
+        return current_version
 
-    setup_text = setup_file.readlines()
-    for line in setup_text:
-        if "__version__"in line:
-            version_line = line
-            current_version = re.findall(r"([0-9.]*[0-9]+)", version_line)
-            break
-    current_version = semantic_version.Version(current_version[0])
-    return current_version
 
-def bump_version(release_type, current_version):
+def bump_version(release_type: str, current_version: Version):
     """
     Get current version from setup.py
 
@@ -35,31 +28,49 @@ def bump_version(release_type, current_version):
         new_version: The bumped version
 
     """
-    if release_type == '1':
+    if release_type == "1":
         new_version = current_version.next_patch()
-    elif release_type == '2':
+    elif release_type == "2":
         new_version = current_version.next_minor()
-    elif release_type == '3':
-        new_version = current_version.next_mijor()
+    elif release_type == "3":
+        new_version = current_version.next_major()
     else:
         print(bcolors.FAIL + "** Invalid selection **" + bcolors.ENDC)
         return None
-    return  new_version
+
+    return new_version
 
 
-def update_history(new_version, change_summary):
+def update_history(new_version: str, change_summary: str, change_details: str):
     """
-    Update change_log.md or history.md file contents
+    Update history.md file contents
 
     Args:
         new_version: The new version
         change_summary: A summary of all the changes in the new version
 
     """
-    history_file_path = os.path.join(os.getcwd(), 'History.md')
-    history_file = open(history_file_path, 'r')
-    current_content = history_file.read()
+    history_file_path = os.path.join(os.getcwd(), "History.md")
 
-    history_file = open(history_file_path, 'w+')
-    change_message = '###### %s' % new_version + '\n' + change_summary
-    history_file.write('### History\n' + "%s\n" % change_message + current_content)
+    with open(history_file_path, encoding="utf-8", mode="r+") as history_file:
+        current_content = history_file.read()
+
+        change_message = (
+            "## %s" % new_version + " - " + change_summary + "\n" + change_details
+        )
+        history_file.write(f"{change_message}\n{current_content}")
+
+
+def update_version_file(new_version: Version):
+    # update version file
+    version_file_path = os.path.join(os.getcwd(), "version")
+    with open(version_file_path, encoding="utf-8", mode="r+") as version_file:
+        logging.debug(
+            "incoming version : %s.%s.%s",
+            str(new_version.major),
+            str(new_version.minor),
+            str(new_version.patch),
+        )
+        version_file.write(
+            f"{str(new_version.major)}.{str(new_version.minor)}.{str(new_version.patch)}"
+        )
